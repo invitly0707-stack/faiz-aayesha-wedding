@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Faiz & Aayesha</title>
+    <!-- text/css Grid & Flex Framework Styling via Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Premium Royal Fonts Architecture -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Marcellus&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Vector Library Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --champagne: #F4E7C5;
+            --ivory: #FFFFFA;
+            --cream: #FFFDF0;
+            --dark-gold: #AA800E;
+            --royal-text: #2C2514;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Marcellus', serif;
+            background-color: var(--ivory);
+            color: var(--royal-text);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Royal Typography Engine Layout Profiles */
+        .font-royal-heading {
+            font-family: 'Cinzel Decorative', serif;
+            letter-spacing: 0.05em;
+        }
+
+        .font-royal-serif {
+            font-family: 'Marcellus', serif;
+            letter-spacing: 0.03em;
+        }
+
+        .font-arabic-royal {
+            font-family: 'Amiri', serif;
+        }
+
+        .font-body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Clean Glassmorphism Interface Card Designs */
+        .glass-card-light {
+            background: rgba(255, 255, 250, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.08);
+        }
+
+        /* Custom Scrollbar Configuration Layout */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--ivory);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+        }
+
+        /* Animation Dynamic Canvas View layer */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        /* Opening Experience Screen Elements Overlay Overlay Layer */
+        #opening-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #FFFDF0 0%, #EFEAD8 100%);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease-in-out, visibility 1.5s;
+        }
+
+        /* Interactive Royal Envelope System Matrix */
+        .envelope-wrapper {
+            position: relative;
+            width: 360px;
+            height: 260px;
+            background-color: var(--ivory);
+            border-radius: 4px;
+            box-shadow: 0 40px 80px rgba(180,160,120,0.3);
+            cursor: pointer;
+            perspective: 1500px;
+            transition: transform 0.5s ease;
+        }
+
+        .envelope-wrapper:hover {
+            transform: translateY(-8px);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 180px solid transparent;
+            border-right: 180px solid transparent;
+            border-top: 130px solid #EADCAE;
+            transform-origin: top;
+            transition: transform 0.8s ease-in-out;
+            z-index: 4;
+        }
+
+        .envelope-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 180px solid #F5ECD2;
+            border-top: 130px solid transparent;
+            border-bottom: 130px solid #F5ECD2;
+            z-index: 3;
+        }
+
+        .envelope-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-right: 180px solid #F5ECD2;
+            border-top: 130px solid transparent;
+            border-bottom: 130px solid #F5ECD2;
+            z-index: 3;
+        }
+
+        .envelope-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            border-left: 180px solid transparent;
+            border-right: 180px solid transparent;
+            border-bottom: 130px solid #FAF3DD;
+            z-index: 3;
+        }
+
+        .wax-seal {
+            position: absolute;
+            top: 110px;
+            left: 150px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #D4AF37, #AA800E);
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 15px rgba(170,128,14,0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        .wax-seal text {
+            font-size: 7.5px;
+            font-family: 'Cinzel Decorative', serif;
+            fill: #FFFDF0;
+            letter-spacing: 1px;
+        }
+
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            width: 330px;
+            height: 240px;
+            background: var(--ivory);
+            border: 2px solid var(--gold);
+            z-index: 2;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: transform 1.2s ease-in-out;
+            text-align: center;
+        }
+
+        /* Envelope Interactivity State Switches */
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrapper.open .wax-seal {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translateY(-120px);
+            z-index: 4;
+        }
+
+        /* Ambient Parallax/Floating Vectors Animation Layers */
+        @keyframes floatLantern {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .lantern-animation {
+            animation: floatLantern 5s ease-in-out infinite;
+        }
+
+        /* Cinematic Scroll Dynamic Reveal Architecture Layouts */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Music Floating Action Floating Node Toggle Button */
+        #audio-panel {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 90;
+            background: var(--ivory);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(212,175,55,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #audio-panel:hover {
+            transform: scale(1.08);
+            background: var(--gold);
+            color: white;
+        }
+
+        /* Vector Damascus Islamic Traditional Geometrical Tile Background Patterns */
+        .royal-light-pattern {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><path d="M40 0 L80 40 L40 80 L0 40 Z" fill="none" stroke="%23d4af37" stroke-width="0.25" opacity="0.1"/></svg>');
+        }
+    </style>
+</head>
+<body class="royal-light-pattern">
+
+    <!-- Active Vector Floating Particle Field Viewport Layer -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- HTML5 Audio Streaming Element Core Container Node -->
+    <audio id="nasheed-audio-node" loop>
+        <source src="Wedding Nasheed.mp3">
+    </audio>
+
+    <div id="audio-panel" class="hidden">
+        <i id="audio-state-icon" class="fa-solid fa-volume-xmark text-sm"></i>
+    </div>
+
+    <!-- 1. CINEMATIC LUXURY LIGHT OPENING EXPERIENCE LAYER -->
+    <div id="opening-overlay" class="royal-light-pattern">
+        <!-- Structural Hanging Lantern Silhouette Vectors Graphics -->
+        <div class="absolute top-0 left-12 lantern-animation opacity-20 hidden md:block">
+            <svg width="50" height="180" viewBox="0 0 50 180">
+                <line x1="25" y1="0" x2="25" y2="110" stroke="#D4AF37" stroke-width="1.5"/>
+                <path d="M10 110 L40 110 L45 140 L25 165 L5 140 Z" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                <circle cx="25" cy="138" r="5" fill="#D4AF37"/>
+            </svg>
+        </div>
+        <div class="absolute top-0 right-12 lantern-animation opacity-20 hidden md:block" style="animation-delay: 1.5s;">
+            <svg width="50" height="180" viewBox="0 0 50 180">
+                <line x1="25" y1="0" x2="25" y2="90" stroke="#D4AF37" stroke-width="1.5"/>
+                <path d="M10 90 L40 90 L45 120 L25 145 L5 120 Z" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                <circle cx="25" cy="118" r="5" fill="#D4AF37"/>
+            </svg>
+        </div>
+
+        <div class="flex flex-col items-center justify-center space-y-8 z-10 px-4">
+            <div class="text-center">
+                <p class="font-royal-heading text-[10px] tracking-[0.4em] text-gray-500 uppercase mb-3">Royal Invitation</p>
+                <h2 class="font-royal-heading text-2xl text-amber-900 tracking-widest font-semibold">FAIZ & AAYESHA</h2>
+            </div>
+
+            <!-- Envelope Mechanical Dynamic Layer Base Layout -->
+            <div class="envelope-wrapper" id="main-envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-left"></div>
+                <div class="envelope-right"></div>
+                <div class="envelope-bottom"></div>
+                
+                <div class="wax-seal">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="23" fill="none" stroke="#fff" stroke-width="0.75" stroke-dasharray="3,3"/>
+                        <path id="text-curve" d="M 12,30 A 18,18 0 0,1 48,30" fill="none" />
+                        <text><textPath href="#text-curve" startOffset="50%" text-anchor="middle">OPEN</textPath></text>
+                        <path d="M26 28 L30 33 L34 28" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <div class="letter flex flex-col justify-center items-center">
+                    <div class="border border-[#D4AF37]/50 w-full h-full p-4 flex flex-col justify-center items-center bg-white">
+                        <span class="font-royal-heading text-[9px] tracking-[0.3em] text-amber-800 block mb-2">BISMILLAH</span>
+                        <h3 class="font-royal-heading text-base text-stone-800 font-bold">Faiz &amp; Aayesha</h3>
+                        <p class="font-body text-[9px] text-stone-500 mt-2 italic max-w-[200px]">Request the absolute honor of your presence to witness their sacred covenant.</p>
+                        <div class="mt-4 inline-block bg-[#D4AF37] text-white text-[8px] font-royal-heading tracking-widest px-4 py-2 uppercase">View Details</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-amber-800 font-royal-serif text-xs tracking-widest animate-pulse mt-4">Tap Wax Seal to Open Invitation</p>
+        </div>
+    </div>
+
+
+    <!-- MAIN WEBSITE CORE ARCHITECTURE VIEWPORT LAYER -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000">
+
+        <!-- 2. HERO ROYAL TRADITIONAL LIGHT BANNER SECTION -->
+        <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 bg-gradient-to-b from-[#FFFDF6] via-[#FAF6ED] to-[#FFFDF6] overflow-hidden">
+            <!-- Archway Structural Graphics Overlay Texture Background -->
+            <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-center bg-no-repeat bg-cover" style="background-image: url('https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1400');"></div>
+            
+            <div class="z-10 max-w-4xl mx-auto space-y-6 px-2">
+                <!-- Traditional Calligraphic Header Area Element -->
+                <div class="text-3xl md:text-5xl text-[#AA800E] font-arabic-royal mb-4 tracking-normal reveal">
+                    بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                </div>
+                
+                <p class="font-royal-heading text-[11px] md:text-xs tracking-[0.4em] text-stone-500 uppercase reveal">With The Blessings of Allah, We Invite You To Celebrate</p>
+                
+                <!-- Main Core Royal Couple Typography Element Structure -->
+                <h1 class="font-royal-heading text-4xl sm:text-6xl md:text-7xl text-[#AA800E] tracking-wide my-6 font-medium reveal">
+                    Faiz <span class="text-xl md:text-3xl font-body block md:inline-block mx-4 text-stone-400">&amp;</span> Aayesha
+                </h1>
+
+                <p class="font-royal-serif text-sm md:text-base italic text-stone-600 max-w-lg mx-auto tracking-wider reveal">
+                    "Two Hearts, One Soul, Bound By Faith &amp; Love"
+                </p>
+
+                <div class="w-20 h-[1px] bg-[#D4AF37] mx-auto my-6 reveal"></div>
+
+                <p class="font-royal-serif text-xs md:text-sm tracking-[0.15em] text-stone-700 max-w-2xl mx-auto px-4 leading-relaxed reveal">
+                    "Bismillah-ir-Rahman-ir-Rahim — With the blessings of Allah, we joyfully invite you to celebrate the sacred union of Faiz &amp; Aayesha."
+                </p>
+
+                <!-- Champagne Countdown Block Segment Module -->
+                <div class="pt-10 reveal">
+                    <p class="font-royal-heading text-[10px] tracking-[0.3em] text-[#AA800E] uppercase mb-5">The Nikah Ceremony Countdown</p>
+                    <div id="countdown" class="flex justify-center gap-3 md:gap-6 text-center">
+                        <div class="glass-card-light rounded-xl p-3 min-w-[70px] md:min-w-[85px] border border-[#D4AF37]/20">
+                            <span id="days" class="font-royal-serif text-xl md:text-2xl text-[#AA800E] block font-bold">00</span>
+                            <span class="font-body text-[9px] uppercase tracking-widest text-stone-500">Days</span>
+                        </div>
+                        <div class="glass-card-light rounded-xl p-3 min-w-[70px] md:min-w-[85px] border border-[#D4AF37]/20">
+                            <span id="hours" class="font-royal-serif text-xl md:text-2xl text-[#AA800E] block font-bold">00</span>
+                            <span class="font-body text-[9px] uppercase tracking-widest text-stone-500">Hours</span>
+                        </div>
+                        <div class="glass-card-light rounded-xl p-3 min-w-[70px] md:min-w-[85px] border border-[#D4AF37]/20">
+                            <span id="minutes" class="font-royal-serif text-xl md:text-2xl text-[#AA800E] block font-bold">00</span>
+                            <span class="font-body text-[9px] uppercase tracking-widest text-stone-500">Mins</span>
+                        </div>
+                        <div class="glass-card-light rounded-xl p-3 min-w-[70px] md:min-w-[85px] border border-[#D4AF37]/20">
+                            <span id="seconds" class="font-royal-serif text-xl md:text-2xl text-[#AA800E] block font-bold">00</span>
+                            <span class="font-body text-[9px] uppercase tracking-widest text-stone-500">Secs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View Scroll Navigation Link Element Pointer -->
+            <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-center z-10">
+                <a href="#holy-verse-block" class="opacity-50 hover:opacity-100 transition-opacity">
+                    <span class="font-royal-heading text-[9px] uppercase tracking-[0.3em] block mb-1">Explore Details</span>
+                    <i class="fa-solid fa-angle-down text-sm text-[#AA800E] animate-bounce"></i>
+                </a>
+            </div>
+        </header>
+
+
+        <!-- 3. DECORATIVE HOLY QURAN VERSE CARD SECTION -->
+        <section id="holy-verse-block" class="py-20 px-4 text-center bg-[#FFFDFB]">
+            <div class="max-w-3xl mx-auto glass-card-light p-8 md:p-14 rounded-2xl relative border border-[#D4AF37]/30 shadow-sm reveal">
+                <div class="text-[#D4AF37] opacity-30 text-xl mb-4"><i class="fa-solid fa-star-and-crescent"></i></div>
+
+                <div class="font-arabic-royal text-2xl md:text-3xl text-stone-800 mb-6 leading-loose font-medium">
+                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+                </div>
+                <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mb-6"></div>
+                <p class="font-royal-serif text-base md:text-lg text-stone-700 italic leading-relaxed">
+                    "And among His signs is that He created for you spouses that you may find tranquility in them."
+                </p>
+                <p class="font-body text-[10px] text-stone-400 uppercase tracking-[0.2em] mt-4">— Surah Ar-Rum [30:21]</p>
+            </div>
+        </section>
+
+
+        <!-- 4. PROFILE DESCRIPTION LABELS (NO LOGO CIRCLES CARDS SECTION) -->
+        <section class="py-16 px-4 bg-gradient-to-b from-[#FFFDFB] to-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Groom Typography Text Information Profile Block -->
+                    <div class="glass-card-light rounded-xl p-8 text-center border-t-2 border-t-[#D4AF37] shadow-sm hover:shadow-md transition-all duration-300 reveal">
+                        <p class="font-royal-heading text-[10px] tracking-widest text-[#AA800E] uppercase mb-1">The Groom</p>
+                        <h3 class="font-royal-heading text-3xl text-stone-800 font-medium">Faiz</h3>
+                        <div class="w-8 h-[1px] bg-[#D4AF37] mx-auto my-3"></div>
+                        <p class="font-royal-serif text-sm text-stone-600 italic px-4 leading-relaxed">
+                            "A man of faith, kindness, and integrity."
+                        </p>
+                    </div>
+
+                    <!-- Bride Typography Text Information Profile Block -->
+                    <div class="glass-card-light rounded-xl p-8 text-center border-t-2 border-t-[#D4AF37] shadow-sm hover:shadow-md transition-all duration-300 reveal" style="transition-delay: 0.1s;">
+                        <p class="font-royal-heading text-[10px] tracking-widest text-[#AA800E] uppercase mb-1">The Bride</p>
+                        <h3 class="font-royal-heading text-3xl text-stone-800 font-medium">Aayesha</h3>
+                        <div class="w-8 h-[1px] bg-[#D4AF37] mx-auto my-3"></div>
+                        <p class="font-royal-serif text-sm text-stone-600 italic px-4 leading-relaxed">
+                            "A graceful soul filled with warmth and elegance."
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. JOURNEY CHRONICLE TIMELINE SECTION -->
+        <section class="py-24 px-4 bg-[#FAF8F2]">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <p class="font-royal-heading text-[10px] tracking-[0.3em] text-stone-500 uppercase mb-2">Destined Grace</p>
+                    <h2 class="font-royal-heading text-3xl text-stone-800 font-medium tracking-wide">Our Beautiful Journey</h2>
+                    <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-4"></div>
+                </div>
+
+                <!-- Structured Flow Line Guide -->
+                <div class="relative border-l border-[#D4AF37]/50 ml-4 md:mx-auto md:max-w-xl">
+                    
+                    <!-- Milestone Step A -->
+                    <div class="mb-12 ml-6 relative reveal">
+                        <span class="absolute -left-[31px] top-1 bg-[#FFFDF0] border border-[#D4AF37] w-4 h-4 rounded-full flex items-center justify-center">
+                            <span class="bg-[#D4AF37] w-1.5 h-1.5 rounded-full"></span>
+                        </span>
+                        <div class="glass-card-light p-6 rounded-xl shadow-none">
+                            <h4 class="font-royal-serif text-lg text-[#AA800E] font-semibold">First Meeting</h4>
+                            <p class="font-body text-[10px] tracking-wider uppercase text-stone-400 mb-2">Destiny Written</p>
+                            <p class="font-body text-xs text-stone-600 leading-relaxed">A chance encounter that blossomed into a beautiful bond, guided by mutual respect and absolute clarity of faith.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone Step B -->
+                    <div class="mb-12 ml-6 relative reveal">
+                        <span class="absolute -left-[31px] top-1 bg-[#FFFDF0] border border-[#D4AF37] w-4 h-4 rounded-full flex items-center justify-center">
+                            <span class="bg-[#D4AF37] w-1.5 h-1.5 rounded-full"></span>
+                        </span>
+                        <div class="glass-card-light p-6 rounded-xl shadow-none">
+                            <h4 class="font-royal-serif text-lg text-[#AA800E] font-semibold">Engagement</h4>
+                            <p class="font-body text-[10px] tracking-wider uppercase text-stone-400 mb-2">Family Prayers Unified</p>
+                            <p class="font-body text-xs text-stone-600 leading-relaxed">A milestone moment filled with pure happiness and family blessings, initializing our shared trajectory forward.</p>
+                        </div>
+                    </div>
+
+                    <!-- Milestone Step C -->
+                    <div class="ml-6 relative reveal">
+                        <span class="absolute -left-[31px] top-1 bg-[#FFFDF0] border border-[#D4AF37] w-4 h-4 rounded-full flex items-center justify-center">
+                            <span class="bg-[#D4AF37] w-1.5 h-1.5 rounded-full"></span>
+                        </span>
+                        <div class="glass-card-light p-6 rounded-xl shadow-none">
+                            <h4 class="font-royal-serif text-lg text-[#AA800E] font-semibold">Nikah Announcement</h4>
+                            <p class="font-body text-[10px] tracking-wider uppercase text-stone-400 mb-2">Sacred Covenant Accorded</p>
+                            <p class="font-body text-xs text-stone-600 leading-relaxed">A sacred union destined by Allah. Standing together as dedicated lifelong companions under the protection of the Almighty.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 6. WEDDING ITINERARY EVENT CARD MATRIX -->
+        <section class="py-24 px-4 bg-white">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <p class="font-royal-heading text-[10px] tracking-[0.3em] text-stone-500 uppercase mb-2">Sacred Assemblies</p>
+                    <h2 class="font-royal-heading text-3xl text-stone-800 font-medium tracking-wide">Wedding Events</h2>
+                    <div class="w-12 h-[1px] bg-[#D4AF37] mx-auto mt-4"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Event Segment Card Alpha -->
+                    <div class="glass-card-light rounded-xl p-6 text-center border border-stone-100 flex flex-col justify-between shadow-sm hover:shadow-md transition-all reveal">
+                        <div>
+                            <span class="text-[#D4AF37] text-xl block mb-3"><i class="fa-regular fa-bell"></i></span>
+                            <h3 class="font-royal-serif text-xl text-stone-800 font-bold mb-3">Mehndi Night</h3>
+                            <div class="w-6 h-[0.5px] bg-[#D4AF37] mx-auto mb-4"></div>
+                            <p class="font-royal-serif text-stone-700 text-sm font-medium mb-1"><i class="fa-regular fa-calendar-check mr-2 opacity-60"></i>15 December 2026</p>
+                            <p class="font-body text-stone-400 text-[11px] uppercase tracking-wider mb-6">7:00 PM Onwards</p>
+                        </div>
+                        <div>
+                            <p class="font-royal-heading text-[9px] tracking-widest text-stone-400 uppercase mb-0.5">Venue Location</p>
+                            <p class="font-body text-xs text-stone-600">Royal Garden Banquet</p>
+                        </div>
+                    </div>
+
+                    <!-- Event Segment Card Beta (Featured Center Entry Profile) -->
+                    <div class="glass-card-light rounded-xl p-6 text-center relative border-2 border-[#D4AF37] flex flex-col justify-between shadow-md transform md:-translate-y-2 bg-[#FFFDF6] reveal" style="transition-delay: 0.1s;">
+                        <span class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#D4AF37] text-white text-[8px] tracking-[0.2em] uppercase font-royal-heading px-3 py-1 rounded-sm shadow-sm">Sacred Covenant</span>
+                        <div>
+                            <span class="text-[#AA800E] text-xl block mb-3 mt-1"><i class="fa-solid fa-mosque"></i></span>
+                            <h3 class="font-royal-serif text-xl text-[#AA800E] font-bold mb-3">Nikah Ceremony</h3>
+                            <div class="w-6 h-[0.5px] bg-[#D4AF37] mx-auto mb-4"></div>
+                            <p class="font-royal-serif text-stone-800 text-sm font-semibold mb-1"><i class="fa-regular fa-calendar-check mr-2 opacity-80"></i>16 December 2026</p>
+                            <p class="font-body text-stone-500 text-[11px] uppercase tracking-wider mb-6">11:00 AM Sharp</p>
+                        </div>
+                        <div>
+                            <p class="font-royal-heading text-[9px] tracking-widest text-stone-400 uppercase mb-0.5">Venue Location</p>
+                            <p class="font-body text-xs text-stone-700 font-medium">Noor Palace Hall</p>
+                        </div>
+                    </div>
+
+                    <!-- Event Segment Card Gamma -->
+                    <div class="glass-card-light rounded-xl p-6 text-center border border-stone-100 flex flex-col justify-between shadow-sm hover:shadow-md transition-all reveal" style="transition-delay: 0.2s;">
+                        <div>
+                            <span class="text-[#D4AF37] text-xl block mb-3"><i class="fa-solid fa-handshake-angle"></i></span>
+                            <h3 class="font-royal-serif text-xl text-stone-800 font-bold mb-3">Walima Reception</h3>
+                            <div class="w-6 h-[0.5px] bg-[#D4AF37] mx-auto mb-4"></div>
+                            <p class="font-royal-serif text-stone-700 text-sm font-medium mb-1"><i class="fa-regular fa-calendar-check mr-2 opacity-60"></i>17 December 2026</p>
+                            <p class="font-body text-stone-400 text-[11px] uppercase tracking-wider mb-6">7:30 PM Onwards</p>
+                        </div>
+                        <div>
+                            <p class="font-royal-heading text-[9px] tracking-widest text-stone-400 uppercase mb-0.5">Venue Location</p>
+                            <p class="font-body text-xs text-stone-600">Grand Crescent Ballroom</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. MASONRY VISUAL PHOTO GALLERY MODULE -->
+        <section class="py-24 px-4 bg-[#FAF8F5]">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 reveal">
+                    <p class="font-royal-heading text-[10px] tracking-[0.3em] text-stone-500 uppercase mb-2">Aesthetic Stills</p>
+                    <h2 class="font-royal-heading text-2xl text-stone-800 font-medium">Captured Moments</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="overflow-hidden rounded-xl border border-stone-200/60 h-60 bg-stone-100 group relative reveal">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Engagement Session">
+                        <div class="absolute inset-0 bg-stone-900/10 opacity-100"></div>
+                    </div>
+                    <div class="overflow-hidden rounded-xl border border-stone-200/60 h-60 bg-stone-100 group relative reveal" style="transition-delay: 0.1s;">
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Couple Portraits">
+                    </div>
+                    <div class="overflow-hidden rounded-xl border border-stone-200/60 h-60 bg-stone-100 group relative reveal" style="transition-delay: 0.2s;">
+                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Family Moments">
+                    </div>
+                    <div class="overflow-hidden rounded-xl border border-stone-200/60 h-60 bg-stone-100 group relative reveal" style="transition-delay: 0.3s;">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Preparations">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 8. GEOGRAPHIC INTERACTIVE VENUE MAP COMPONENT -->
+        <section class="py-20 px-4 bg-white">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="mb-10 reveal">
+                    <h2 class="font-royal-heading text-2xl text-stone-800 font-medium">The Sanctuary Destination</h2>
+                    <p class="font-body text-xs text-stone-400 uppercase tracking-widest mt-1">Noor Palace Hall</p>
+                </div>
+
+                <div class="w-full h-72 rounded-2xl overflow-hidden border border-stone-200 shadow-sm mb-8 relative reveal">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2732402127394!2d77.068899!3d28.502106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjhCsDMwJzA3LjYiTiA3N8KwMDQnMDguMCJF!5e0!3m2!1sen!2sin!4v1625000000000!5md" 
+                        class="w-full h-full border-0 absolute inset-0" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-3 reveal">
+                    <a href="https://maps.google.com" target="_blank" class="inline-flex items-center justify-center bg-stone-800 hover:bg-stone-900 text-white font-royal-heading tracking-widest text-[10px] uppercase px-5 py-3.5 rounded-md transition-colors duration-300">
+                        <i class="fa-solid fa-location-arrow mr-2 text-[#D4AF37]"></i> Google Map Navigation
+                    </a>
+                    <a href="tel:+1234567890" class="inline-flex items-center justify-center bg-transparent hover:bg-stone-50 text-stone-800 border border-stone-200 font-royal-heading tracking-widest text-[10px] uppercase px-5 py-3.5 rounded-md transition-colors duration-300">
+                        <i class="fa-solid fa-phone-flip mr-2 text-[#D4AF37]"></i> Connect Coordinator
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 9. CLEAN LUXURY RSVP FORM MATRIX -->
+        <section class="py-20 px-4 bg-gradient-to-b from-white to-[#FAF9F3]">
+            <div class="max-w-md mx-auto glass-card-light p-8 rounded-2xl border border-[#D4AF37]/30 reveal">
+                <div class="text-center mb-6">
+                    <h2 class="font-royal-heading text-xl text-stone-800 font-bold tracking-wide">Confirm Attendance</h2>
+                    <p class="font-body text-[10px] text-stone-400 tracking-wider uppercase mt-1">Response requested before Dec 01, 2026</p>
+                    <div class="w-8 h-[0.5px] bg-[#D4AF37] mx-auto mt-3"></div>
+                </div>
+
+                <form id="rsvp-engine-form" class="space-y-4 font-body text-xs">
+                    <div>
+                        <label class="block uppercase tracking-widest text-stone-500 font-semibold mb-1">Guest Name</label>
+                        <input type="text" required class="w-full bg-white/90 border border-stone-200 rounded-md px-3 py-2 focus:outline-none focus:border-[#D4AF37] transition-colors" placeholder="e.g., Tariq Ahmed">
+                    </div>
+
+                    <div>
+                        <label class="block uppercase tracking-widest text-stone-500 font-semibold mb-1">Mobile Number</label>
+                        <input type="tel" required class="w-full bg-white/90 border border-stone-200 rounded-md px-3 py-2 focus:outline-none focus:border-[#D4AF37] transition-colors" placeholder="e.g., +91 98765 43210">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block uppercase tracking-widest text-stone-500 font-semibold mb-1">Total Attendees</label>
+                            <select class="w-full bg-white/90 border border-stone-200 rounded-md px-3 py-2 focus:outline-none focus:border-[#D4AF37] transition-colors">
+                                <option>1 Guest</option>
+                                <option>2 Guests</option>
+                                <option>3 Guests</option>
+                                <option>4+ Guests</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block uppercase tracking-widest text-stone-500 font-semibold mb-1">Presence Confirmation</label>
+                            <div class="flex items-center space-x-3 mt-2">
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="radio" name="presence" checked class="text-stone-800 focus:ring-0">
+                                    <span class="ml-1.5 text-stone-600">Yes</span>
+                                </label>
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="radio" name="presence" class="text-stone-800 focus:ring-0">
+                                    <span class="ml-1.5 text-stone-600">No</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block uppercase tracking-widest text-stone-500 font-semibold mb-1">Prayers / Message</label>
+                        <textarea rows="2" class="w-full bg-white/90 border border-stone-200 rounded-md px-3 py-2 focus:outline-none focus:border-[#D4AF37] transition-colors" placeholder="Send your custom notes & blessings..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-stone-800 hover:bg-stone-900 text-white font-royal-heading tracking-widest text-[10px] uppercase py-3 rounded-md shadow-sm transition-all duration-300">
+                        Confirm Attendance
+                    </button>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- 10. FOOTER CONTEXT DESIGN -->
+        <footer class="bg-[#F5EFE2] text-stone-800 py-12 px-4 text-center border-t border-[#D4AF37]/20">
+            <div class="max-w-md mx-auto space-y-4">
+                <span class="text-[#AA800E] text-lg opacity-40"><i class="fa-solid fa-star-and-crescent"></i></span>
+                <p class="font-royal-serif text-base tracking-wide text-stone-700 italic">
+                    "May Allah Bless This Union With Love, Mercy &amp; Happiness."
+                </p>
+                <div class="w-10 h-[0.5px] bg-[#D4AF37] mx-auto"></div>
+                <h2 class="font-royal-heading text-lg text-[#AA800E] tracking-widest font-semibold uppercase">Faiz &amp; Aayesha</h2>
+                <p class="font-body text-[10px] uppercase text-stone-400 tracking-widest pt-2">&copy; 2026 Invitly Elite . All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- CORE INTERACTION ARCHITECTURE ENGINES -->
+    <script>
+        // 1. Envelope Mechanical Automation Sequence
+        const mainEnvelope = document.getElementById('main-envelope');
+        const openingOverlay = document.getElementById('opening-overlay');
+        const mainContentNode = document.getElementById('main-content');
+        const audioTrackNode = document.getElementById('nasheed-audio-node');
+        const audioToggleBtn = document.getElementById('audio-panel');
+        const iconElement = document.getElementById('audio-state-icon');
+
+        mainEnvelope.addEventListener('click', function() {
+            mainEnvelope.classList.add('open');
+            
+            // Audio Core Initiation Framework Context
+            setTimeout(() => {
+                audioTrackNode.volume = 0.25; 
+                audioTrackNode.play().then(() => {
+                    iconElement.className = "fa-solid fa-volume-high text-sm";
+                }).catch(() => {
+                    console.log("Audio contextual playback awaiting focus interaction authorization.");
+                });
+                audioToggleBtn.classList.remove('hidden');
+            }, 800);
+
+            // Interface Visibility Smooth Crossfade
+            setTimeout(() => {
+                openingOverlay.style.opacity = '0';
+                openingOverlay.style.visibility = 'hidden';
+                mainContentNode.classList.remove('opacity-0');
+                evaluateOnScrollElements();
+            }, 2000);
+        });
+
+        // 2. Audio Action Stream Toggling Interface
+        audioToggleBtn.addEventListener('click', function() {
+            if (audioTrackNode.paused) {
+                audioTrackNode.play();
+                iconElement.className = "fa-solid fa-volume-high text-sm";
+            } else {
+                audioTrackNode.pause();
+                iconElement.className = "fa-solid fa-volume-xmark text-sm";
+            }
+        });
+
+        // 3. Countdown Clock Evaluation System
+        const targetCountdownStamp = new Date('December 16, 2026 11:00:00').getTime();
+
+        function synchronizeClock() {
+            const currentStamp = new Date().getTime();
+            const distance = targetCountdownStamp - currentStamp;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+        }
+        setInterval(synchronizeClock, 1000);
+        synchronizeClock();
+
+        // 4. Viewport Intersection Observer Custom Engine 
+        window.addEventListener('scroll', evaluateOnScrollElements);
+        function evaluateOnScrollElements() {
+            const targets = document.querySelectorAll('.reveal');
+            for (let i = 0; i < targets.length; i++) {
+                const viewportHeight = window.innerHeight;
+                const elementTopDistance = targets[i].getBoundingClientRect().top;
+                const entryBuffer = 80; 
+                
+                if (elementTopDistance < viewportHeight - entryBuffer) {
+                    targets[i].classList.add('active');
+                }
+            }
+        }
+
+        // 5. Golden Foil Drift Particle Simulation Logic Engine
+        const surfaceCanvas = document.getElementById('particle-canvas');
+        const contextObj = surfaceCanvas.getContext('2d');
+        let configurationArray = [];
+
+        function setCanvasBounds() {
+            surfaceCanvas.width = window.innerWidth;
+            surfaceCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', setCanvasBounds);
+        setCanvasBounds();
+
+        class LuxuryFoilParticle {
+            constructor() {
+                this.x = Math.random() * surfaceCanvas.width;
+                this.y = Math.random() * surfaceCanvas.height;
+                this.radius = Math.random() * 2 + 0.4;
+                this.dx = Math.random() * 0.3 - 0.15;
+                this.dy = Math.random() * 0.4 + 0.15;
+                this.rgba = 'rgba(212, 175, 55, ' + (Math.random() * 0.5 + 0.15) + ')';
+            }
+            step() {
+                this.x += this.dx;
+                this.y -= this.dy;
+                if (this.y < 0) {
+                    this.y = surfaceCanvas.height;
+                    this.x = Math.random() * surfaceCanvas.width;
+                }
+            }
+            render() {
+                contextObj.fillStyle = this.rgba;
+                contextObj.beginPath();
+                contextObj.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                contextObj.fill();
+            }
+        }
+
+        function createSystemPool() {
+            configurationArray = [];
+            const densityCoefficient = Math.floor((surfaceCanvas.width * surfaceCanvas.height) / 11000);
+            for (let i = 0; i < densityCoefficient; i++) {
+                configurationArray.push(new LuxuryFoilParticle());
+            }
+        }
+
+        function executeRenderLoop() {
+            contextObj.clearRect(0, 0, surfaceCanvas.width, surfaceCanvas.height);
+            for (let i = 0; i < configurationArray.length; i++) {
+                configurationArray[i].step();
+                configurationArray[i].render();
+            }
+            requestAnimationFrame(executeRenderLoop);
+        }
+        createSystemPool();
+        executeRenderLoop();
+
+        // 6. Mock Data Request Interception Form Context
+        document.getElementById('rsvp-engine-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert("Thank you for responding. Your invitation preference status metric data payload structure has been stored successfully.");
+        });
+    </script>
+</body>
+</html>
